@@ -1,9 +1,6 @@
 setwd("~/Tarea_Nro4")
 
-#dv: int -> int
-#Def dv: función para generar digito verificador para un rut válido
-#Ejemplo: dv(18749743)-> 4
-
+#Crear Ruts
 dv <- function(rut){
   rut = as.character(rut)
   x = as.numeric(rev(strsplit(rut,NULL)[[1]]))
@@ -14,77 +11,38 @@ dv <- function(rut){
   val = c(1:9,"k",0)
   dv = val[match(z, key)]
   return(dv)
-} 
-
-
-Digito_verificador(18066591)
-"Test"
-Digito_verificador(8315225)
-Digito_verificador(8919162)
-Digito_verificador(19186427)
-Digito_verificador(17835666)
-
-
-#Definicion de tiempo: tiempo que se demora en codificar Ruts 
-#Definicion de Ruts: crea una lista de 5.000 numeros de ruts aleatorios unicos con su digito verificador, todos estos sin repetición "
-
-
-tiempo<- proc.time()
-Ruts <- list()
-for(i in sample(0000000:9999999,5000,replace=F)){
-  rut<- print(paste(i,"-",Digito_verificador(i)))
-  Ruts <-c(Ruts,rut)
 }
-proc.time() - tiempo
+
+#Contar Llama
+a<-" Porque la llama que llama estando en llamas me llama, alguien mas llama"
+b<-" "
+c<-"Porque la llama que llama estando en llamas me llama , alguien mas llama"
+Contar<-strsplit(a,b)[[1]]
+Contar2<-strsplit(c,b)[[1]]
 
 
-#contarSaldoNegativo: ... -> int
-#Definicion contarSaldoNegativo:
 
-clientes <- list (list(1,"paulina",-22000),list(2,"ruben",-50000),list(3,"carlos",1000),list(4,"mary",-25000))
-
-contarSaldoNegativo <- function(listaclientes){
-  GenteSaldoNegativo <- 0
-  for (cliente in listaclientes){
-    if (cliente[3] < 0){
-      GenteSaldoNegativo<- (GenteSaldoNegativo+1)
+#Contar saldo Negativo de una lista de clientes
+SaldoNegativo <- function(Clientes){
+  CantidadClientes <- 0
+  for (i in Clientes){
+    if (i[3] < 0){
+      CantidadClientes<- (CantidadClientes+1)
     }
   }
-  return(GenteSaldoNegativo)
+  return(CantidadClientes)
 }
 
-#Test
-contarSaldoNegativo(clientes)
 
 
-#sinvocales: string -> string sin vocales
-#Definicion sinvocales: introducir x frase que sea devuelta sin las vocales
-#Ejemplos: Chile campeon , El partido termino con 0 goles 
-
-sinVocales <- function(oracion){
-  stringsinvocales <- ""
-  strspliteada <- strsplit(oracion, "")[[1]]  
-  for (letra in strspliteada){
-    if(letra != "a" && letra != "e" && letra != "i" && letra != "o" && letra != "u" && letra != "A" && letra != "E"
-       && letra != "I" && letra != "O" && letra != "U") {
-      stringsinvocales <- paste(stringsinvocales, letra, sep="")
+#Función sin vocales
+SinVocales <- function(Frase){
+  StringSinVocales <- ""
+  RecorreLetras<-strsplit(Frase, "")[[1]]  
+  for (letra in RecorreLetras){
+    if(letra != "a" && letra != "e" && letra != "i" && letra != "o" && letra != "u") {
+      StringSinVocales <- paste(StringSinVocales, letra, sep="")
     }
   }
-  return(stringsinvocales)
+  return(StringSinVocales)
 }
-
-#Test
-Frase <- "Chile campeon"
-sinVocales(Frase)
-Frase_2 <- "El partido termino con 0 goles"
-sinVocales(Frase_2)
-
-
-#strsplit: sting -> int
-#Def strsplit: función para contar palabras
-
-
-strsplit(a,b)[[1]]
-
-#a: cadena de strings. 
-#b: es el separador del texto.
